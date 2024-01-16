@@ -1,4 +1,5 @@
 clean.sh
-covert_smiles_to_mol2.py
+convert_smiles_to_mol2.py
 modify_dock_in.py
 run_dock6.sh
+smiles_amber_score.py

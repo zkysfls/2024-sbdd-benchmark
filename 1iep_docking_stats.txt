@@ -1,4 +1,0 @@
-PDB 1iep - Model RGA:                         Min -10.2, Max: -7.0, Median: -8.3, Mean: -8.360869565217392
-PDB 1iep - Model Pocket2Mol:                         Min -11.8, Max: -4.3, Median: -7.95, Mean: -7.962962962962963
-PDB 1iep - Model 3DSBDD:                         Min -10.1, Max: 0.0, Median: -8.4, Mean: -8.125
-PDB 1iep - Model autogrow4:                         Min -10.0, Max: 0.0, Median: -7.5, Mean: -7.136666666666667

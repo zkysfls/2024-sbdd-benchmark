@@ -48,19 +48,15 @@ if __name__ == '__main__':
     smiles_list = extract_smiles(args.smiles_path)
     
     docking = args.pdb + '_docking'
-    print(docking)
-    print(type(docking))
     docking_oracle = Oracle(name = docking)
-    docking_csv_path = './evaluation_outputs/' + args.pdb + '_docking_' + args.model + '.csv' 
+    docking_csv_path = '../evaluation_outputs/' + args.pdb + '_docking_' + args.model + '.csv' 
     docking_score_eval(docking_oracle, smiles_list, docking_csv_path)
     
     oracle_sa = Oracle(name = 'SA')
     oracle_qed = Oracle(name = 'QED')
     oracle_logp = Oracle(name = 'LogP')
-    property_csv_path = './evaluation_outputs/' + args.pdb + '_property_' + args.model + '.csv'
+    property_csv_path = '../evaluation_outputs/' + args.pdb + '_property_' + args.model + '.csv'
     property_score_eval(oracle_sa, oracle_qed, oracle_logp, smiles_list, property_csv_path)
-    
-    
 
 
     

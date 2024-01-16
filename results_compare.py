@@ -8,8 +8,10 @@ import csv
 import os
 import pandas as pd
 
-def calculate_and_store_stats(all_data, models, pdb_code, file_type):
-    
+def calculate_and_store_stats(all_data, models, pdb_code, file_type, output_folder):
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
     if file_type == 'docking':
         stats_file = f'{pdb_code}_{file_type}_stats.txt'
         grouped = all_data.groupby('model')
@@ -18,9 +20,9 @@ def calculate_and_store_stats(all_data, models, pdb_code, file_type):
         max_values = grouped['Docking score'].max()
         median_values = grouped['Docking score'].median()
         mean_values = grouped['Docking score'].mean()
-
+        save_path = os.path.join(output_folder, stats_file)
         # Write statistics for the model to the file
-        with open(stats_file, 'w') as file:
+        with open(save_path, 'w') as file:
             for model in models:
                 min_val = min_values[model]
                 max_val = max_values[model]
@@ -47,8 +49,9 @@ def calculate_and_store_stats(all_data, models, pdb_code, file_type):
         median_values_logp = grouped['LogP'].median()
         mean_values_logp = grouped['LogP'].mean()
 
-            # Write statistics for the model to the file
-        with open(stats_file, 'w') as file:
+        save_path = os.path.join(output_folder, stats_file)
+        # Write statistics for the model to the file
+        with open(save_path, 'w') as file:
             for model in models:
                 min_val_sa = min_values_sa[model]
                 max_val_sa = max_values_sa[model]
@@ -74,39 +77,85 @@ def calculate_and_store_stats(all_data, models, pdb_code, file_type):
 def process_files(pdb_code, folder_path, file_type):
     all_data = pd.DataFrame()
     models = []
+    pattern = re.compile(rf'{re.escape(pdb_code)}_' + re.escape(file_type) + r'_(.+)\.csv')
 
     for filename in os.listdir(folder_path):
-        if filename.startswith(f"{pdb_code}_{file_type}"):
-            model = filename.split('_')[2].split('.')[0]  # Extract the model name
+        match = pattern.match(filename)
+        if match:
+            model = pattern.match(filename).group(1)
             full_path = os.path.join(folder_path, filename)
             df = pd.read_csv(full_path)
-            df['model'] = model  # Add a column for the model
+            df['model'] = model
             all_data = pd.concat([all_data, df])
-            models.append(model)
+            if model not in models:
+                models.append(model)
 
     return all_data, models
 
-def create_boxplot(all_data, models, pdb_code, file_type):
-    
+def create_boxplot(all_data, models, pdb_code, file_type, output_folder):
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
     if file_type == 'docking':
-        plt.figure()
-        sns.boxplot(x='model', y='Docking score', data=all_data)
+        plt.figure(figsize=(12, 8))
+        sns.boxplot(x='model', y='Docking score', data=all_data, order=models)
+        plt.xticks(rotation=45)  # Rotate labels
         plt.title(f'{pdb_code} {file_type.title()} Boxplot')
         plt.suptitle('')
         plt.xlabel('Model')
         plt.ylabel('Docking score')
-        plt.savefig(f'{pdb_code}_{file_type}_combined_boxplot.png')
+        #plt.tick_params(axis='x', labelsize=7)  # Adjust font size as needed
+        save_path = os.path.join(output_folder, f'{pdb_code}_{file_type}_combined_boxplot.png')
+        plt.savefig(save_path)
+        plt.close()
     elif file_type == 'property':
         for property_type in ['SA', 'QED', 'LogP']:
-            plt.figure()
-            sns.boxplot(x='model', y=property_type, data=all_data)
+            plt.figure(figsize=(12, 8))
+            sns.boxplot(x='model', y=property_type, data=all_data, order=models)
+            plt.xticks(rotation=45)  # Rotate labels
             plt.title(f'{pdb_code} {property_type} Boxplot')
             plt.suptitle('')
             plt.xlabel('Model')
             plt.ylabel(property_type)
-            plt.savefig(f'{pdb_code}_{property_type}_combined_boxplot.png')
+            #plt.tick_params(axis='x', labelsize=7)  # Adjust font size as needed
+            save_path = os.path.join(output_folder, f'{pdb_code}_{property_type}_combined_boxplot.png')
+            plt.savefig(save_path)
+            plt.close()
 
+def create_kdeplot(all_data, models, pdb_code, file_type, output_folder):
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
 
+    palette = sns.color_palette('bright', len(models))
+    color_dict = dict(zip(models, palette))
+
+    if file_type == 'docking':
+        # Create a KDE plot
+        plt.figure(figsize=(12, 8))
+        for model in models:
+            model_data = all_data[all_data['model'] == model]
+            sns.kdeplot(model_data['Docking score'], bw_adjust=0.5, label=model, color=color_dict[model])
+        # Set the title and labels
+        plt.title(f'KDE Plot for {pdb_code} {file_type}')
+        plt.xlabel('Docking score')  # Adjust label as needed
+        plt.ylabel('Density')
+        plt.legend()
+        # Save the plot
+        save_path = os.path.join(output_folder, f'{pdb_code}_{file_type}_kde_plot.png')
+        plt.savefig(save_path)
+        plt.close()
+    elif file_type == 'property':
+        for property_type in ['SA', 'QED', 'LogP']:
+            plt.figure(figsize=(12, 8))
+            for model in models:
+                model_data = all_data[all_data['model'] == model]
+                sns.kdeplot(model_data[property_type], bw_adjust=0.5, label=model, color=color_dict[model])
+            plt.title(f'{pdb_code} {property_type} kdeplot')
+            plt.xlabel(property_type)
+            plt.ylabel('Density')
+            plt.legend()
+            save_path = os.path.join(output_folder, f'{pdb_code}_{property_type}_combined_kdeplot.png')
+            plt.savefig(save_path)
+            plt.close()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -116,13 +165,26 @@ if __name__ == '__main__':
                         help='The PDB that want to compare')
     parser.add_argument('--file_type', type=str,
                         help='docking or property')
+    parser.add_argument('--output_folder', type=str,
+                        help='the path to save the output')
     args = parser.parse_args()
 
     all_data, models = process_files(args.pdb, args.eval_folder_path, args.file_type)
-    print(all_data)
-    print(models)
-    create_boxplot(all_data, models, args.pdb, args.file_type)
-    calculate_and_store_stats(all_data, models, args.pdb, args.file_type)
+    print(all_data['model'].unique())
+    #all_data.to_csv('filename.csv', index=False)
+    #duplicate = all_data.duplicated(keep=False)
+    #print(duplicate)
+    #print(all_data.index.duplicated().any())
+    #duplicate.to_csv('indices.csv', index=False)
+    all_data = all_data[~all_data.duplicated(keep=False)]
+    all_data = all_data.reset_index(drop=True)
+    #print(all_data)
+    print(all_data.index.duplicated().any())
+    #all_data.to_csv('filename_remove.csv', index=False)
+    #duplicate.to_csv('indices.csv', index=False)
+    create_boxplot(all_data, models, args.pdb, args.file_type, args.output_folder)
+    create_kdeplot(all_data, models, args.pdb, args.file_type, args.output_folder)
+    calculate_and_store_stats(all_data, models, args.pdb, args.file_type, args.output_folder)
 
 
 
