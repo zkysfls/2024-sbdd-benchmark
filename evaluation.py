@@ -14,7 +14,6 @@ def extract_smiles(file_path):
             if match:
                 smiles_string = match.group()
                 smiles_strings.append(smiles_string)
-
     return smiles_strings
 
 def docking_score_eval(docking_oracle, smiles_list, csv_path):
@@ -24,6 +23,7 @@ def docking_score_eval(docking_oracle, smiles_list, csv_path):
         for smiles in smiles_list:
             docking = docking_oracle(smiles)
             csv_writer.writerow([smiles, docking])
+            outfile.flush()
 
 def property_score_eval(sa_oracle, qed_oracle, logp_oracle, smiles_list, csv_path):
     with open(csv_path, 'w', newline='') as outfile:
@@ -34,6 +34,7 @@ def property_score_eval(sa_oracle, qed_oracle, logp_oracle, smiles_list, csv_pat
             qed = qed_oracle(smiles)
             logp = logp_oracle(smiles)
             csv_writer.writerow([smiles, sa, qed, logp])
+            outfile.flush()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -49,13 +50,13 @@ if __name__ == '__main__':
     
     docking = args.pdb + '_docking'
     docking_oracle = Oracle(name = docking)
-    docking_csv_path = '../evaluation_outputs/' + args.pdb + '_docking_' + args.model + '.csv' 
+    docking_csv_path = '../eval_output_0304/' + args.pdb + '_docking_' + args.model + '.csv' 
     docking_score_eval(docking_oracle, smiles_list, docking_csv_path)
     
     oracle_sa = Oracle(name = 'SA')
     oracle_qed = Oracle(name = 'QED')
     oracle_logp = Oracle(name = 'LogP')
-    property_csv_path = '../evaluation_outputs/' + args.pdb + '_property_' + args.model + '.csv'
+    property_csv_path = '../eval_output_0304/' + args.pdb + '_property_' + args.model + '.csv'
     property_score_eval(oracle_sa, oracle_qed, oracle_logp, smiles_list, property_csv_path)
 
 
