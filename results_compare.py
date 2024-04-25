@@ -89,9 +89,46 @@ def process_files(pdb_code, folder_path, file_type):
             all_data = pd.concat([all_data, df])
             if model not in models:
                 models.append(model)
-
     return all_data, models
 
+def create_top_n_avg_scores(df, top_n, pdb, file_type):
+    if file_type == 'docking':
+        top_n_avg_scores = df.groupby('model')['Docking score'].apply(lambda x: x.nsmallest(top_n).mean())
+        top_n_avg_scores_df = top_n_avg_scores.reset_index()
+        top_n_avg_scores_df.columns = ['Model', f'Top {top_n} Average Docking Score']
+        top_n_avg_scores_df['pdb'] = pdb
+    
+
+    
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--eval_folder_path', type=str,
+                        help='Path to the evaluation folder')
+    parser.add_argument('--pdb_list', type=str,
+                        help='The list of PDB that want to compare',
+                        default=['1iep', '3eml', '3ny8', '4rlu', '4unn', '5mo4', '7l11'])
+    parser.add_argument('--file_type', type=str,
+                        help='docking or property')
+    parser.add_argument('--output_folder', type=str,
+                        help='the path to save the output')
+    args = parser.parse_args()
+
+    all_data_list = []
+    for pdb in args.pdb_list:
+        all_data, models = process_files(pdb, args.eval_folder_path, args.file_type)
+        all_data = all_data[~all_data.duplicated(keep=False)]
+        all_data = all_data.reset_index(drop=True)
+        
+    
+
+
+
+
+
+
+
+"""
 def create_boxplot(all_data, models, pdb_code, file_type, output_folder):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -162,35 +199,5 @@ def create_kdeplot(all_data, models, pdb_code, file_type, output_folder):
             save_path = os.path.join(output_folder, f'{pdb_code}_{property_type}_combined_kdeplot.png')
             plt.savefig(save_path)
             plt.close()
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--eval_folder_path', type=str,
-                        help='Path to the evaluation folder')
-    parser.add_argument('--pdb', type=str,
-                        help='The PDB that want to compare')
-    parser.add_argument('--file_type', type=str,
-                        help='docking or property')
-    parser.add_argument('--output_folder', type=str,
-                        help='the path to save the output')
-    args = parser.parse_args()
-
-    all_data, models = process_files(args.pdb, args.eval_folder_path, args.file_type)
-    print(all_data['model'].unique())
-    #all_data.to_csv('filename.csv', index=False)
-    #duplicate = all_data.duplicated(keep=False)
-    #print(duplicate)
-    #print(all_data.index.duplicated().any())
-    #duplicate.to_csv('indices.csv', index=False)
-    all_data = all_data[~all_data.duplicated(keep=False)]
-    all_data = all_data.reset_index(drop=True)
-    #print(all_data)
-    print(all_data.index.duplicated().any())
-    #all_data.to_csv('filename_remove.csv', index=False)
-    #duplicate.to_csv('indices.csv', index=False)
-    create_boxplot(all_data, models, args.pdb, args.file_type, args.output_folder)
-    create_kdeplot(all_data, models, args.pdb, args.file_type, args.output_folder)
-    calculate_and_store_stats(all_data, models, args.pdb, args.file_type, args.output_folder)
-
-
+"""
 

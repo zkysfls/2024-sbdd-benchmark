@@ -4,7 +4,7 @@ modify_dock_in.py
 run_dock6.sh
 smiles_amber_score.py
 top2latex_table.ipynb
-oracle/
+draw.ipynb
 compare_batch.sh
 eval_batch_3d.sh
 eval_batch_pf.sh
