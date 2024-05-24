@@ -8,6 +8,9 @@ import csv
 import os
 import pandas as pd
 
+
+# Calculate the stat of docking score and property score
+
 def calculate_and_store_stats(all_data, models, pdb_code, file_type, output_folder):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -127,77 +130,4 @@ if __name__ == '__main__':
 
 
 
-
-"""
-def create_boxplot(all_data, models, pdb_code, file_type, output_folder):
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
-    if file_type == 'docking':
-        plt.figure(figsize=(12, 8))
-        sns.boxplot(x='model', y='Docking score', data=all_data, order=models)
-        plt.xticks(rotation=45)  # Rotate labels
-        plt.title(f'{pdb_code} {file_type.title()} Boxplot', fontsize=20)
-        plt.suptitle('')
-        plt.xlabel('Model')
-        plt.ylabel('Docking score')
-        plt.tick_params(axis='x', which='both', labelsize=10)  # Adjust font size as needed
-        plt.tick_params(axis='y', which='both', labelsize=12)
-        save_path = os.path.join(output_folder, f'{pdb_code}_{file_type}_combined_boxplot.png')
-        plt.savefig(save_path)
-        plt.close()
-    elif file_type == 'property':
-        for property_type in ['SA', 'QED', 'LogP']:
-            plt.figure(figsize=(12, 8))
-            sns.boxplot(x='model', y=property_type, data=all_data, order=models)
-            plt.xticks(rotation=45)  # Rotate labels
-            plt.title(f'{pdb_code} {property_type} Boxplot', fontsize=20)
-            plt.suptitle('')
-            plt.xlabel('Model')
-            plt.ylabel(property_type)
-            plt.tick_params(axis='x', which='both', labelsize=10)  # Adjust font size as needed
-            plt.tick_params(axis='y', which='both', labelsize=12)
-            save_path = os.path.join(output_folder, f'{pdb_code}_{property_type}_combined_boxplot.png')
-            plt.savefig(save_path)
-            plt.close()
-
-def create_kdeplot(all_data, models, pdb_code, file_type, output_folder):
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
-
-    palette = sns.color_palette('bright', len(models))
-    color_dict = dict(zip(models, palette))
-
-    if file_type == 'docking':
-        # Create a KDE plot
-        plt.figure(figsize=(12, 8))
-        for model in models:
-            model_data = all_data[all_data['model'] == model]
-            sns.kdeplot(model_data['Docking score'], bw_adjust=0.5, label=model, color=color_dict[model])
-        # Set the title and labels
-        plt.title(f'KDE Plot for {pdb_code} {file_type}', fontsize=20)
-        plt.xlabel('Docking score')  # Adjust label as needed
-        plt.ylabel('Density')
-        plt.tick_params(axis='x', labelsize=12)  # Adjust font size as needed
-        plt.tick_params(axis='y', labelsize=12)
-        plt.legend()
-        # Save the plot
-        save_path = os.path.join(output_folder, f'{pdb_code}_{file_type}_kde_plot.png')
-        plt.savefig(save_path)
-        plt.close()
-    elif file_type == 'property':
-        for property_type in ['SA', 'QED', 'LogP']:
-            plt.figure(figsize=(12, 8))
-            for model in models:
-                model_data = all_data[all_data['model'] == model]
-                sns.kdeplot(model_data[property_type], bw_adjust=0.5, label=model, color=color_dict[model])
-            plt.title(f'{pdb_code} {property_type} kdeplot', fontsize=20)
-            plt.xlabel(property_type)
-            plt.ylabel('Density')
-            plt.tick_params(axis='x', which='both', labelsize=12)  # Adjust font size as needed
-            plt.tick_params(axis='y', which='both', labelsize=12)
-            plt.legend()
-            save_path = os.path.join(output_folder, f'{pdb_code}_{property_type}_combined_kdeplot.png')
-            plt.savefig(save_path)
-            plt.close()
-"""
 
