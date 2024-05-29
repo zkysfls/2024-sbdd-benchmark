@@ -58,22 +58,22 @@ We have processed the data, pretrained the model. Both are available in the repo
 
 |                  `Model`                                                                                        | `Dimension` | `Generated Number `   | `requires_gpu` |
 |-----------------------------------------------------------------------------------------------------------|------------|-----------------------------------------------|---------|
-| **[3DSBDD](https://pubs.rsc.org/en/content/articlehtml/2021/sc/d0sc06805e)**                              | -      |  -          |    yes     |
-| **[AUTOGROW](https://pubs.rsc.org/en/content/articlelanding/2019/sc/c8sc05372c)**                        | -     |  -          |   yes    |
-| **[POCKET2MOL](https://pubs.acs.org/doi/10.1021/acs.jcim.8b00839)**                                       | -     | -          |    yes     |
-| **[POCKETFLOW](https://chemrxiv.org/engage/chemrxiv/article-details/60c753f00f50db6830397c37)**               | -    | -          |    yes    |
-| **[RESGEN](https://openreview.net/forum?id=H1lmyRNFvr)**                                             | -    |  -          |    yes     |
-| **[DST](https://pubs.rsc.org/en/content/articlelanding/2019/sc/c8sc05372c)**                      | -       |  -          |    no     |
-| **[GRAPH GA](https://pubs.acs.org/doi/10.1021/acs.jcim.8b00839)**                                 | -     | -          |    yes    |
-| **[MIMOSA](https://arxiv.org/pdf/2212.01385.pdf)**                                                   | -     |  -          |    yes     |
-| **[MOLDQN](https://pubs.acs.org/doi/10.1021/acs.jcim.8b00839)**                                | -    |  -          |    yes    |
-| **[PASITHEA](https://arxiv.org/pdf/1610.02415.pdf)**                                                   | -     |  -          |    yes     |
-| **[REINVENT](https://arxiv.org/pdf/1610.02415.pdf)**                                                  | -    |  -          |    yes     |
-| **[SCREENING](https://arxiv.org/pdf/1802.04364.pdf)**                                                       | -   | -          |    yes     |
-| **[SELFIES VAE BO](https://openreview.net/forum?id=gS3XMun4cl_)**                                                   | -   | -          |    yes     |
-| **[SMILES GA](https://arxiv.org/abs/1704.07555)**                                                          | -     |  -          |    yes    |
-| **[SMILES LSTM HC](https://arxiv.org/pdf/2310.05365)**                                             | -     | -          |    yes    |
-| **[SMILES VAE BO](https://arxiv.org/abs/1704.07555)**                                                 | -    | -          |    yes     |
+| **[3DSBDD](https://pubs.rsc.org/en/content/articlehtml/2021/sc/d0sc06805e)**                              | -      |  771          |    yes     |
+| **[AUTOGROW](https://pubs.rsc.org/en/content/articlelanding/2019/sc/c8sc05372c)**                        | -     |  1233          |   yes    |
+| **[POCKET2MOL](https://pubs.acs.org/doi/10.1021/acs.jcim.8b00839)**                                       | -     | 928          |    yes     |
+| **[POCKETFLOW](https://chemrxiv.org/engage/chemrxiv/article-details/60c753f00f50db6830397c37)**               | -    | 1000          |    yes    |
+| **[RESGEN](https://openreview.net/forum?id=H1lmyRNFvr)**                                             | -    |  631          |    yes     |
+| **[DST](https://pubs.rsc.org/en/content/articlelanding/2019/sc/c8sc05372c)**                      | -       |  1001          |    no     |
+| **[GRAPH GA](https://pubs.acs.org/doi/10.1021/acs.jcim.8b00839)**                                 | -     | 643          |    yes    |
+| **[MIMOSA](https://arxiv.org/pdf/2212.01385.pdf)**                                                   | -     |  1001          |    yes     |
+| **[MOLDQN](https://pubs.acs.org/doi/10.1021/acs.jcim.8b00839)**                                | -    |  501          |    yes    |
+| **[PASITHEA](https://arxiv.org/pdf/1610.02415.pdf)**                                                   | -     |  914          |    yes     |
+| **[REINVENT](https://arxiv.org/pdf/1610.02415.pdf)**                                                  | -    |  100          |    yes     |
+| **[SCREENING](https://arxiv.org/pdf/1802.04364.pdf)**                                                       | -   | 1000          |    yes     |
+| **[SELFIES VAE BO](https://openreview.net/forum?id=gS3XMun4cl_)**                                                   | -   | 200          |    yes     |
+| **[SMILES GA](https://arxiv.org/abs/1704.07555)**                                                          | -     |  584          |    yes    |
+| **[SMILES LSTM HC](https://arxiv.org/pdf/2310.05365)**                                             | -     | 501          |    yes    |
+| **[SMILES VAE BO](https://arxiv.org/abs/1704.07555)**                                                 | -    | 200          |    yes     |
 
 
 
