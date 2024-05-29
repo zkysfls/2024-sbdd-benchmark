@@ -63,7 +63,7 @@ We have processed the data, pretrained the model. Both are available in the repo
 | **[Pocket2mol](https://pubs.acs.org/doi/10.1021/acs.jcim.8b00839)**                                       | 3D     | 928          |    yes     |
 | **[PocketFlow](https://arxiv.org/abs/2205.07249)**               | 3D    | 1000          |    yes    |
 | **[RenGen](https://www.nature.com/articles/s42256-023-00712-7)**                                             | 3D    |  631          |    yes     |
-| **[DST](https://arxiv.org/abs/2109.10469)**                      | 2D       |  1001          |    no     |
+| **[DST](https://arxiv.org/abs/2109.10469)**                      | 2D       |  1001          |    yes     |
 | **[Graph GA](https://pubs.rsc.org/en/content/articlelanding/2019/sc/c8sc05372c)**                                 | 2D     | 643          |    yes    |
 | **[MIMOSA](https://arxiv.org/abs/2010.02318)**                                                   | 2D     |  1001          |    yes     |
 | **[MolDQN](https://arxiv.org/abs/1810.08678)**                                | 2D    |  501          |    yes    |
