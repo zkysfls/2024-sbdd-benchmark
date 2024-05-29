@@ -57,7 +57,7 @@ Based the ML methodologies, all the methods are categorized into:
 We have processed the data, pretrained the model. Both are available in the repository. 
 
 |                  `Models`                                                                                        | `Dimension` | `Generated Number `   | `requires_gpu` |
-|-----------------------------------------------------------------------------------------------------------|------------|-----------------------------------------------|-----------|---------|
+|-----------------------------------------------------------------------------------------------------------|------------|-----------------------------------------------|---------|
 | **screening**                                                                                             | -          | -                                             |     no     |
 | **[molpal](https://pubs.rsc.org/en/content/articlehtml/2021/sc/d0sc06805e)**                              | -          | ray, tensorflow, ConfigArgParse, pytorch-lightning       |    no     |
 | **[graph\_ga](https://pubs.rsc.org/en/content/articlelanding/2019/sc/c8sc05372c)**                        | fragment   | joblib                                        |   no    |
@@ -87,7 +87,7 @@ We have processed the data, pretrained the model. Both are available in the repo
 | **[pasithea](https://arxiv.org/pdf/2012.09712.pdf)**                                                      | SELFIES    | selfies, matplotlib                             |    yes     |
 | **[dst](https://openreview.net/pdf?id=w_drCosT76)**                                                       | fragment   | -                                              |    no     |
 | **[gflownet](https://arxiv.org/abs/2106.04399)**                                                          | fragment   | torch_{geometric,sparse,cluster}, pdb          |     yes    |
-| **[gflownet\_al](https://arxiv.org/abs/2106.04399)**                                                      | fragment   | torch_{geometric,sparse,cluster}, pdb           |    yes     ||
+| **[gflownet\_al](https://arxiv.org/abs/2106.04399)**                                                      | fragment   | torch_{geometric,sparse,cluster}, pdb           |    yes     |
 
 
 
