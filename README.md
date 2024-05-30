@@ -63,16 +63,16 @@ We have processed the data, pretrained the model. Both are available in the repo
 | **[Pocket2mol](https://pubs.acs.org/doi/10.1021/acs.jcim.8b00839)**                                       | 3D     | 928          |    yes     |
 | **[PocketFlow](https://arxiv.org/abs/2205.07249)**               | 3D    | 1000          |    yes    |
 | **[RenGen](https://www.nature.com/articles/s42256-023-00712-7)**                                             | 3D    |  631          |    yes     |
-| **[DST](https://arxiv.org/abs/2109.10469)**                      | 2D       |  1001          |    yes     |
-| **[Graph GA](https://pubs.rsc.org/en/content/articlelanding/2019/sc/c8sc05372c)**                                 | 2D     | 643          |    yes    |
+| **[DST](https://arxiv.org/abs/2109.10469)**                      | 2D       |  1001          |    no     |
+| **[Graph GA](https://pubs.rsc.org/en/content/articlelanding/2019/sc/c8sc05372c)**                                 | 2D     | 643          |    no    |
 | **[MIMOSA](https://arxiv.org/abs/2010.02318)**                                                   | 2D     |  1001          |    yes     |
 | **[MolDQN](https://arxiv.org/abs/1810.08678)**                                | 2D    |  501          |    yes    |
 | **[Pasithea](https://arxiv.org/abs/2012.09712)**                                                   | 1D     |  914          |    yes     |
 | **[REINVENT](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-017-0235-x)**                                                  | 1D    |  100          |    yes     |
-| **[SCREENING](https://arxiv.org/pdf/1802.04364.pdf)**                                                       | -   | 1000          |    yes     |
+| **[SCREENING](https://arxiv.org/pdf/1802.04364.pdf)**                                                       | -   | 1000          |    no     |
 | **[SELFIES-VAE-BO](https://arxiv.org/abs/1610.02415)**                                                   | 1D   | 200          |    yes     |
-| **[SMILES-GA](https://arxiv.org/abs/1804.02134)**                                                          | 1D     |  584          |    yes    |
-| **[SMILES-LSTM-HC](https://arxiv.org/abs/1811.09621)**                                             | 1D     | 501          |    yes    |
+| **[SMILES-GA](https://arxiv.org/abs/1804.02134)**                                                          | 1D     |  584          |    no    |
+| **[SMILES-LSTM-HC](https://arxiv.org/abs/1811.09621)**                                             | 1D     | 501          |    no    |
 | **[SMILES-VAE-BO](https://arxiv.org/abs/1610.02415)**                                                 | 1D    | 200          |    yes     |
 
 
