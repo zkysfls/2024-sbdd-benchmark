@@ -81,6 +81,7 @@ We have processed the data, pretrained the model. Both are available in the repo
 All the PDB files can be downloaded from **[RCSB Protein Data Bank](https://www.rcsb.org/)**. The blinding sites are as follow:
 
 | PDB   | center(x,y,z)    | bounding box size |
+|---------|------------|-----------------|
 | 1iep  | 15.6138918, 53.38013513, 15.454837    | 15    |
 | 3eml  | -9.06363, -7.1446, 55.86259999    | 15    |
 | 3ny8  | 2.2488, 4.68495, 51.39820000000001    | 15 (23 for Pocket2mol)    |
